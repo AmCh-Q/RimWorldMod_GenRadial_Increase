@@ -55,19 +55,14 @@ namespace GenRadialIncrease
 			typeof(GenRadial)
 				.GetField(nameof(GenRadial.RadialPatternRadii))
 				.SetValue(null, RadialPatternRadii);
-			harmony.Patch(AccessTools.PropertyGetter(typeof(GenRadial),
-				nameof(GenRadial.MaxRadialPatternRadius)),
+			harmony.Patch(typeof(GenRadial)
+				.GetProperty(nameof(GenRadial.MaxRadialPatternRadius))
+				.GetGetMethod(),
 				prefix: new HarmonyMethod(((Delegate)Prefix_MaxRadialPatternRadius).Method));
-			harmony.Patch(AccessTools.Method(typeof(GenRadial),
-				nameof(GenRadial.NumCellsInRadius)),
+			harmony.Patch(typeof(GenRadial)
+				.GetMethod(nameof(GenRadial.NumCellsInRadius)),
 				prefix: new HarmonyMethod(((Delegate)Prefix_NumCellsInRadius).Method));
-			//MethodInfo m_RadialCellsAround = AccessTools.EnumeratorMoveNext(
-			//	AccessTools.Method(typeof(GenRadial),
-			//	nameof(GenRadial.RadialCellsAround),
-			//	[typeof(IntVec3), typeof(float), typeof(float)]));
 			Log.Message($"[GenRadial Increase]: RadialPatternLength = {RadialPattern.Length}");
-			//Prefix_NumCellsInRadius(out int result, 1f);
-			//Log.Message($"[GenRadial Increase]: There are {result} cells within a radius of 1f");
 		}
 		public static bool Prefix_MaxRadialPatternRadius(out float __result)
 		{
@@ -129,7 +124,6 @@ namespace GenRadialIncrease
 				// Then to multiply by 4, it becomes 0x187FF1C9
 				return BitConverter.Int32BitsToSingle(x);
 			}/**/
-
 
 			int lowerBound = Mathf.Max(Mathf.FloorToInt(cellEst - errorBound), 1);
 			int upperBound = Mathf.Min(Mathf.CeilToInt(cellEst + errorBound), RadialPatternLength);
