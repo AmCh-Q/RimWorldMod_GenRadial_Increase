@@ -18,7 +18,11 @@ namespace GenRadialIncrease
 
 		static GenRadialIncrease()
 		{
+			// Reserve Capacity to RadialPatternLength
 			List<IntVec3> list = new(RadialPatternLength);
+
+			// Only iterate over 1/8 of the circle
+			// MaxRadii >= i >= j >= 0 
 			for (int i = 0; i <= MaxRadii; i++)
 			{
 				int max_j_squared = Mathf.Min(i * i, MaxRadii * MaxRadii - i * i);
@@ -42,19 +46,22 @@ namespace GenRadialIncrease
 						list.Add(new IntVec3(j, 0, -i));
 				}
 			}
+			// Same sort as vanilla
 			list.Sort((IntVec3 A, IntVec3 B)
 				=> A.LengthHorizontalSquared - B.LengthHorizontalSquared
 			);
 
+			// Convert to arrays then set
 			RadialPattern = [.. list];
 			RadialPatternRadii = [.. list.Select(x => x.LengthHorizontal)];
-
 			typeof(GenRadial)
 				.GetField(nameof(GenRadial.RadialPattern))
 				.SetValue(null, RadialPattern);
 			typeof(GenRadial)
 				.GetField(nameof(GenRadial.RadialPatternRadii))
 				.SetValue(null, RadialPatternRadii);
+
+			// Patches
 			harmony.Patch(typeof(GenRadial)
 				.GetProperty(nameof(GenRadial.MaxRadialPatternRadius))
 				.GetGetMethod(),
@@ -62,10 +69,14 @@ namespace GenRadialIncrease
 			harmony.Patch(typeof(GenRadial)
 				.GetMethod(nameof(GenRadial.NumCellsInRadius)),
 				prefix: new HarmonyMethod(((Delegate)Prefix_NumCellsInRadius).Method));
+
+			// Debug sanity check
 			Log.Message($"[GenRadial Increase]: RadialPatternLength = {RadialPattern.Length}");
 		}
 		public static bool Prefix_MaxRadialPatternRadius(out float __result)
 		{
+			// Forcibly replace the method so vanilla doesn't get confused by the original length
+			// (which may've been inlined in the original method)
 			__result = RadialPatternRadii[^1];
 			return false;
 		}
