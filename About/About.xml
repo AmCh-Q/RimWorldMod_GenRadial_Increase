@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <packageId>AmCh.GenRadialIncrease</packageId>
+  <modVersion IgnoreIfNoMatchingField="True">1.0.0</modVersion>
+  <name>GenRadial Increase</name>
+  <author>AmCh</author>
+  <description>
+A hacky fix to increase GenRadial in RimWorld 1.6.
+https://discord.com/channels/214523379766525963/215496692047413249/1390583059929104414
+  </description>
+  <steamAppId>2566316158</steamAppId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/</downloadUrl>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+  </loadAfter>
+  <loadBefore>
+    <li>Ludeon.RimWorld</li>
+  </loadBefore>
+</ModMetaData>

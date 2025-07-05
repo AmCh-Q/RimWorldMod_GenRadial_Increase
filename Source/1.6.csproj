@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<!-- Framework properties
+		https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#framework-properties -->
+		<TargetFramework>net48</TargetFramework>
+		<!-- Language options
+		https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-options/language -->
+		<DefineConstants>$(DefineConstants);v1_6;</DefineConstants>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.*-*" />
+		<PackageReference Include="Lib.Harmony" Version="2.3.*" ExcludeAssets="runtime" />
+	</ItemGroup>
+</Project>
