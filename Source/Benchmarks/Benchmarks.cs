@@ -53,7 +53,7 @@ namespace Benchmarks
 				}
 			}
 			Console.WriteLine($"Vector length: {Vector<float>.Count}");
-			for (float r = 0f; r <= HarmonyCE_GenRadial.MAX_RADIUS; r += 0.01f)
+			for (float r = 0f; r <= HarmonyCE_GenRadial.MAX_RADIUS; r += 0.1f)
 			{
 				HarmonyCE_GenRadial.NumCellsInRadius(out int result_HarmonyCE_GenRadial, r);
 				GenRadialIncrease.Prefix_NumCellsInRadius(out int result_GenRadialIncrease, r);
