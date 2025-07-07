@@ -45,6 +45,5 @@ Additionally, the property BaseIntermediateOutputPath has to be set here, explan
 		<Optimize Condition=" '$(Configuration)' != 'Debug' ">true</Optimize>
 		<Optimize Condition=" '$(Configuration)' == 'Debug' ">false</Optimize>
 		<Deterministic>true</Deterministic>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 </Project>

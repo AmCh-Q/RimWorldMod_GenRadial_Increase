@@ -208,13 +208,13 @@ namespace GenRadialIncrease
 		// When (int)radius + (int)diagonal is even, the answer is always 8n + 1
 		// Use IEEE-754 bit hacks
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private unsafe static bool HasOddCells(float r)
+		private static bool HasOddCells(float r)
 		{
 			const float SqrtHalf = 0.707106781f;
 			float d = r * SqrtHalf;
 			// bit hack magic
-			int bitr = *(int*)(&r);
-			int bitd = *(int*)(&d);
+			int bitr = BitConverter.SingleToInt32Bits(r);
+			int bitd = BitConverter.SingleToInt32Bits(d);
 			// Slightly different from the real IEEE 754 mantissa
 			//   -- we first take the fractional part
 			//   -- then add back the missing starting 1
