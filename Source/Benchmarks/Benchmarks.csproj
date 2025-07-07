@@ -27,9 +27,6 @@
       <HintPath>..\..\..\..\Source\Core\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Unity.Burst">
-      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\Unity.Burst.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
