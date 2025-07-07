@@ -36,8 +36,5 @@
     <PackageReference Include="BenchmarkDotNet">
       <Version>0.13.1</Version>
     </PackageReference>
-    <None Update="app.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 </Project>

@@ -24,7 +24,7 @@ namespace Benchmarks
 			// Speed and Memory Benchmark
 			BenchmarkRunner.Run<Benchmarks>(config);
 
-			//ValidateArray();
+			ValidateArray();
 		}
 
 		public static void ValidateArray()
