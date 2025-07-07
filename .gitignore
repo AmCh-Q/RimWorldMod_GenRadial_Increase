@@ -1,4 +1,7 @@
 .vs
 bin
 obj
+Assemblies
 **/*.dll
+BenchmarkDotNet.Artifacts
+HarmonyCE_GenRadial.cs

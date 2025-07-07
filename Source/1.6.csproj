@@ -7,6 +7,7 @@
 		<!-- Language options
 		https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-options/language -->
 		<DefineConstants>$(DefineConstants);v1_6;</DefineConstants>
+		<DefaultItemExcludes>$(DefaultItemExcludes);**\Benchmarks\*</DefaultItemExcludes>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.*-*" />

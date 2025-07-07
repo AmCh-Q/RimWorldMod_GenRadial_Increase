@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<RootNamespace>Benchmarks</RootNamespace>
+		<AssemblyName>Benchmarks</AssemblyName>
+		<PlatformTarget>x64</PlatformTarget>
+		<TargetFramework>net48</TargetFramework>
+    <TargetType>Exe</TargetType>
+    <OutputType>Exe</OutputType>
+		<ErrorReport>prompt</ErrorReport>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+		<AnalysisLevel>preview-recommended</AnalysisLevel>
+		<EnableNETAnalyzers>True</EnableNETAnalyzers>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<DefineConstants Condition=" '$(Configuration)' == 'Debug' ">$(DefineConstants);DEBUG;</DefineConstants>
+		<LangVersion>latestMajor</LangVersion>
+		<DebugType>none</DebugType>
+		<Optimize Condition=" '$(Configuration)' != 'Debug' ">true</Optimize>
+		<Optimize Condition=" '$(Configuration)' == 'Debug' ">false</Optimize>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\Source\Core\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Unity.Burst">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\Unity.Burst.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <PackageReference Include="BenchmarkDotNet">
+      <Version>0.13.1</Version>
+    </PackageReference>
+    <None Update="app.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,21 +1,22 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using HarmonyLib;
+//using HarmonyLib;
 using Verse;
 
-namespace GenRadialIncrease
+namespace Benchmarks
 {
-	public class GenRadialIncrease(ModContentPack content) : Mod(content)
-	{
-		//public const int MaxRadius = 119;
-		//public const int RadialPatternLength = 44469;
-		public const int MaxRadius = 200;
-		public const int RadialPatternLength = 125629; // Use analytical method to pre-calculate
 
-		public static readonly Harmony harmony = new(id: "AmCh.GenRadialIncrease");
+	internal static class GenRadialIncrease
+	{
+		//public const int MaxRadius = 200;
+		public const int MaxRadius = 119;
+		//public const int RadialPatternLength = 125629;
+		public const int RadialPatternLength = 44469; // Use analytical method to pre-calculate
+
+		//public static readonly Harmony harmony = new(id: "AmCh.GenRadialIncrease");
 		public static IntVec3[] RadialPattern = new IntVec3[RadialPatternLength];
 		public static float[] RadialPatternRadii = new float[RadialPatternLength];
 
@@ -23,8 +24,8 @@ namespace GenRadialIncrease
 		static GenRadialIncrease()
 		{
 			InitArrays();
-			SetArrays();
-			Patch();
+			//SetArrays();
+			//Patch();
 		}
 
 		// Populate the replacement arrays for GenRadial.RadialPattern
@@ -128,11 +129,11 @@ namespace GenRadialIncrease
 
 		public static void Patch()
 		{
-			if (GenRadial.RadialPattern.Length != 10000)
-				return; // Another mod has already patched the array, stop
-			harmony.Patch(typeof(GenRadial)
-				.GetMethod(nameof(GenRadial.NumCellsInRadius)),
-				prefix: new HarmonyMethod(((Delegate)Prefix_NumCellsInRadius).Method));
+			//if (GenRadial.RadialPattern.Length != 10000)
+			//	return; // Another mod has already patched the array, stop
+			//harmony.Patch(typeof(GenRadial)
+			//	.GetMethod(nameof(GenRadial.NumCellsInRadius)),
+			//	prefix: new HarmonyMethod(((Delegate)Prefix_NumCellsInRadius).Method));
 		}
 
 		// A replacement method for GenRadial.NumCellsInRadius
