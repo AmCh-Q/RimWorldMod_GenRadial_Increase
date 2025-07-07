@@ -13,8 +13,6 @@ namespace Benchmarks
 	[MemoryDiagnoser]
 	public class Benchmarks
 	{
-		//static IntVec3[] unsorted = new IntVec3[GenRadialIncrease.RadialPatternLength];
-		//static IntVec3[] tosort = new IntVec3[GenRadialIncrease.RadialPatternLength];
 		public static void Main()
 		{
 			// Because the UnityEngine.CoreModule RW uses is labeld unoptimized
