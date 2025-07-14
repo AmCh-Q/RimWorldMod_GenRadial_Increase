@@ -124,7 +124,7 @@ namespace Benchmarks
 			// Make the benchmark heavily lean toward lower inputs
 			//for (float r = 1f, rsq; (rsq = r * r) <= maxRadius; r += 0.01f)
 			//	GenRadialIncrease.Prefix_NumCellsInRadius(out int _, rsq);
-			for (float r = 1f; r <= maxRadius; r += 1f)
+			for (float r = 1f; r <= maxRadius; r += 0.01f)
 				GenRadialIncrease.Prefix_NumCellsInRadius(out int _, r);
 		}
 
