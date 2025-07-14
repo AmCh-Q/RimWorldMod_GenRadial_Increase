@@ -147,10 +147,9 @@ namespace Benchmarks
 				__result = 0;
 				return false;
 			}
-			if (radius >= MaxRadius)
+			if (radius > MaxRadius)
 			{
-				if (radius > MaxRadius)
-					LogNotEnoughSquaresError(radius);
+				LogNotEnoughSquaresError(radius);
 				__result = RadialPatternLength;
 				return false;
 			}
@@ -160,15 +159,6 @@ namespace Benchmarks
 			// with error <= 100 for all radius <= 200
 			// See: https://www.desmos.com/calculator/qerpfljbgw
 			int idx = (int)(radius * radius * Mathf.PI);
-
-			// Apply upper bound to avoid IndexOutOfRangeError
-			// No need for lower bound -- can't be negative
-			// We also subtract 6 to make sure
-			//   that the next step can't possibly raise past the upperbound
-			if (idx >= RadialPatternLength - 6)
-			{
-				idx = RadialPatternLength - 6;
-			}
 
 			// Since a circle has 8-way symmetry (axis + diagonals, forming the 8 octants)
 			//   the final answers are always the sum of the following:
@@ -187,11 +177,12 @@ namespace Benchmarks
 				idx = (idx & -7) | (((a + d) % 2 == 0) ? 1 : 5);
 			}
 
-			// Linear search every 8 cells starting from the center
-			if (RadialPatternRadii[idx] <= radius)
+			// Linear search every 8 cells starting from the middle of estimation
+			// Bound check needed to avoid IndexOutOfRangeError
+			if (idx < RadialPatternLength && RadialPatternRadii[idx] <= radius)
 			{
 				do { idx += 8; } // Search Upward
-				while (RadialPatternRadii[idx] <= radius);
+				while (idx < RadialPatternLength && RadialPatternRadii[idx] <= radius);
 				__result = idx;
 			}
 			else
