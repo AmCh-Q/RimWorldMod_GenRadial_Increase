@@ -55,13 +55,16 @@ namespace Benchmarks
 			{
 				HarmonyCE_GenRadial.NumCellsInRadius(out int result_HarmonyCE_GenRadial, r);
 				GenRadialIncrease.Prefix_NumCellsInRadius(out int result_GenRadialIncrease, r);
+				GenRadialIncrease.Simple_NumCellsInRadius(out int result_Simple, r);
 				GenRadialIncrease.Analytic_NumCellsInRadius(out int result_Analytic, r);
-				if (result_HarmonyCE_GenRadial != result_GenRadialIncrease ||
+				if (result_GenRadialIncrease != result_HarmonyCE_GenRadial ||
+					result_GenRadialIncrease != result_Simple ||
 					result_GenRadialIncrease != result_Analytic)
 				{
 					Console.WriteLine($"Different cell count " +
 						$"({result_HarmonyCE_GenRadial} " +
 						$"vs {result_GenRadialIncrease} " +
+						$"vs {result_Simple} " +
 						$"vs {result_Analytic}) " +
 						$"for radius {r:f8}");
 					errCount++;
@@ -95,7 +98,7 @@ namespace Benchmarks
 			// Make the benchmark heavily lean toward lower inputs
 			//for (float r = 1f, rsq; (rsq = r * r) <= maxRadius; r += 0.01f)
 			//	HarmonyCE_GenRadial.NumCellsInRadius(out int _, rsq);
-			for (float r = 1f; r <= maxRadius; r += 0.01f)
+			for (float r = 1f; r <= maxRadius; r += 1f)
 				HarmonyCE_GenRadial.NumCellsInRadius(out int _, r);
 		}
 
@@ -121,8 +124,19 @@ namespace Benchmarks
 			// Make the benchmark heavily lean toward lower inputs
 			//for (float r = 1f, rsq; (rsq = r * r) <= maxRadius; r += 0.01f)
 			//	GenRadialIncrease.Prefix_NumCellsInRadius(out int _, rsq);
-			for (float r = 1f; r <= maxRadius; r += 0.01f)
+			for (float r = 1f; r <= maxRadius; r += 1f)
 				GenRadialIncrease.Prefix_NumCellsInRadius(out int _, r);
+		}
+
+		[Benchmark]
+		public void Simple_NumCellsInRadius()
+		{
+			const float maxRadius = HarmonyCE_GenRadial.MAX_RADIUS;
+			// Make the benchmark heavily lean toward lower inputs
+			//for (float r = 1f, rsq; (rsq = r * r) <= maxRadius; r += 0.01f)
+			//	GenRadialIncrease.Simple_NumCellsInRadius(out int _, rsq);
+			for (float r = 1f; r <= maxRadius; r += 1f)
+				GenRadialIncrease.Simple_NumCellsInRadius(out int _, r);
 		}
 
 		[Benchmark]
@@ -133,7 +147,7 @@ namespace Benchmarks
 			// Make the benchmark heavily lean toward lower inputs
 			//for (float r = 1f, rsq; (rsq = r * r) <= maxRadius; r += 0.01f)
 			//	GenRadialIncrease.Prefix_NumCellsInRadius(out int _, rsq);
-			for (float r = 1f; r <= maxRadius; r += 0.01f)
+			for (float r = 1f; r <= maxRadius; r += 1f)
 				GenRadialIncrease.Prefix_NumCellsInRadius(out int _, r);
 		}
 
